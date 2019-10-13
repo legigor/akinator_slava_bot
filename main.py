@@ -1,10 +1,11 @@
 import telebot
 import logging
+import os
+
 from telebot import types
 
-bot = telebot.TeleBot("<api_token>")
-
-logger = telebot.logger
+TELEBOT_TOKEN = os.environ['TELEBOT_TOKEN']
+bot = telebot.TeleBot(TELEBOT_TOKEN)
 telebot.logger.setLevel(logging.DEBUG)
 
 

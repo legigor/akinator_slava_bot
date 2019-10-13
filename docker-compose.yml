@@ -1,0 +1,8 @@
+version: "3.4"
+services:
+  bot:
+    image: legigor/akinator_slava_bot
+    build:
+      context: .
+    environment:
+      - TELEBOT_TOKEN
