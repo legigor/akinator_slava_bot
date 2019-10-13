@@ -1,0 +1,2 @@
+# Slavka's Akinator Project
+
