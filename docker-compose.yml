@@ -6,3 +6,6 @@ services:
       context: .
     environment:
       - TELEBOT_TOKEN
+    deploy:
+      mode: replicated
+      replicas: 1

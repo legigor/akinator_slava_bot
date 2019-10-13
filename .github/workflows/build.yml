@@ -22,6 +22,5 @@ jobs:
         run: |
           ssh-keyscan -H 46.101.108.91  >> ~/.ssh/known_hosts
           export DOCKER_HOST=ssh://root@46.101.108.91
-          docker login docker.pkg.github.com --username legigor --password ${{ secrets.GITHUB_TOKEN }}
-          docker-compose pull
-          docker-compose up -d --force-recreate
+          export TELEBOT_TOKEN=${{ secrets.TELEBOT_TOKEN }}
+          docker stack deploy --with-registry-auth -c docker-compose.yml akinator
