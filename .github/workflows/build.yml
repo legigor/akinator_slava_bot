@@ -1,18 +1,18 @@
-name: Build, Test and Deploy
+name: Build
 
 on: [push]
 
 jobs:
 
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build and push the image
+      - name: Build and publish the image
         run: |
           docker-compose build
           docker login docker.pkg.github.com --username legigor --password ${{ secrets.GITHUB_TOKEN }}
           docker-compose push
+      - name: Deploy the container
+        run: |
+          echo Deploying here!
