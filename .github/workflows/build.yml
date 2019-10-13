@@ -21,6 +21,4 @@ jobs:
       - name: Deploy
         run: |
           ssh-keyscan -H 46.101.108.91  >> ~/.ssh/known_hosts
-          ssh -vvv root@46.101.108.91 ls -lah
-          
-          # docker -l=debug -H ssh://root@46.101.108.91 ps
+          docker -l=debug -H ssh://root@46.101.108.91 ps
