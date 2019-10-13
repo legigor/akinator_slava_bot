@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build and publish the image
+      - name: Build
         run: |
           docker-compose build
+      - name: Publish
+        run: |
           docker login docker.pkg.github.com --username legigor --password ${{ secrets.GITHUB_TOKEN }}
           docker-compose push
-      - name: Deploy the container
+      - name: Deploy
         run: |
           echo Deploying here!
