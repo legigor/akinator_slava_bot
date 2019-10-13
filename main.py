@@ -15,7 +15,7 @@ markup.add('Yes')
 
 @bot.message_handler(commands=['start'])
 def start_command(message):
-    bot.send_message(message.chat.id, "Ваш персонаж реален?", reply_markup=markup)
+    bot.send_message(message.chat.id, "Ваш персонаж реален???", reply_markup=markup)
     bot.register_next_step_handler(message, q1)
 
 
