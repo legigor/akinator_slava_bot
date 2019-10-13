@@ -21,4 +21,4 @@ jobs:
       - name: Deploy
         run: |
           ssh-keyscan -H 46.101.108.91  >> ~/.ssh/known_hosts
-          docker -l=debug -H ssh://root@46.101.108.91 ps
+          docker -l=debug -H ssh://root@46.101.108.91 login docker.pkg.github.com --username legigor --password ${{ secrets.GITHUB_TOKEN }}
