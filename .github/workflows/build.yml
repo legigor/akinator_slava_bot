@@ -20,4 +20,5 @@ jobs:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
       - name: Deploy
         run: |
+          ssh-keyscan -H 46.101.108.91  >> ~/.ssh/known_hosts
           docker -l=debug -H ssh://root@46.101.108.91 ps
