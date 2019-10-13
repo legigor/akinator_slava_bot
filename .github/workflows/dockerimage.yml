@@ -13,6 +13,5 @@ jobs:
     - name: Build the Docker image
       run: |
         docker-compose build
-        docker login docker.pkg.github.com --username legigor 
         docker-compose push
 
