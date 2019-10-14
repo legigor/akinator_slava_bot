@@ -4,12 +4,15 @@ on: [push]
 
 jobs:
 
-  all:
+  main:
+
     runs-on: ubuntu-latest
-    env:
-      VERSION: $(date +%s)
+    
     steps:
       - uses: actions/checkout@v1
+      - name: Set build version
+        run: |
+          export VERSION:=$(date +%s)
       - name: Build
         run: |
           docker-compose build
