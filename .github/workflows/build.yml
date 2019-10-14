@@ -19,6 +19,7 @@ jobs:
           docker-compose build
       - name: Publish
         run: |
+          export VERSION=$(cat .VERSION)
           docker login docker.pkg.github.com --username $GITHUB_ACTOR --password ${{ secrets.GITHUB_TOKEN }}
           docker-compose push
       - uses: webfactory/ssh-agent@v0.1.1
