@@ -30,7 +30,7 @@ def q2(message):
 
 
 def q3(message):
-    bot.send_message(message.chat.id, "єто ви!")
+    bot.send_message(message.chat.id, "ето ви!")
 
 
 # bot.enable_save_next_step_handlers(delay=2, filename="./.handler-saves/step.save")
