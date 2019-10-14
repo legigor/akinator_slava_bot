@@ -1,3 +1,5 @@
+export VERSION=latest
+
 build:
 	docker-compose build
 

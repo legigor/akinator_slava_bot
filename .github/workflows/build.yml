@@ -4,8 +4,10 @@ on: [push]
 
 jobs:
 
-  build:
+  all:
     runs-on: ubuntu-latest
+    env:
+      VERSION=$(date +%s)
     steps:
       - uses: actions/checkout@v1
       - name: Build
@@ -13,14 +15,18 @@ jobs:
           docker-compose build
       - name: Publish
         run: |
-          docker login docker.pkg.github.com --username legigor --password ${{ secrets.GITHUB_TOKEN }}
+          docker login docker.pkg.github.com --username $GITHUB_ACTOR --password ${{ secrets.GITHUB_TOKEN }}
           docker-compose push
       - uses: webfactory/ssh-agent@v0.1.1
         with:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
       - name: Deploy
         run: |
-          ssh-keyscan -H 46.101.108.91  >> ~/.ssh/known_hosts
-          export DOCKER_HOST=ssh://root@46.101.108.91
-          export TELEBOT_TOKEN=${{ secrets.TELEBOT_TOKEN }}
+          export DEPLOY_HOST=46.101.108.91
+          export DEPLOY_USER=root
+          export DOCKER_HOST=ssh://$DEPLOY_USER@$DEPLOY_HOST
+
+          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
           docker stack deploy --with-registry-auth -c docker-compose.yml akinator
+        env:
+          TELEBOT_TOKEN: ${{ secrets.TELEBOT_TOKEN }}
