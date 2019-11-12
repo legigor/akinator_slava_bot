@@ -28,8 +28,6 @@ jobs:
       - name: Deploy
         run: |
           export VERSION=$(cat .VERSION)
-          export DEPLOY_HOST=46.101.108.91
-          export DEPLOY_USER=root
           export DOCKER_HOST=ssh://$DEPLOY_USER@$DEPLOY_HOST
 
           ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
