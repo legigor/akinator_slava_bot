@@ -28,9 +28,8 @@ jobs:
       - name: Deploy
         run: |
           export VERSION=$(cat .VERSION)
-          export DOCKER_HOST=ssh://$DEPLOY_USER@$DEPLOY_HOST
-
-          ssh-keyscan -H $DEPLOY_HOST >> ~/.ssh/known_hosts
+          export DOCKER_HOST=ssh://${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
           docker stack deploy --with-registry-auth -c docker-compose.yml akinator
         env:
           TELEBOT_TOKEN: ${{ secrets.TELEBOT_TOKEN }}
